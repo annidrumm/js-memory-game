@@ -4,7 +4,7 @@ Memory Card Game, also known as Matching Pairs, is a card game in which all of t
 
 > A small project with Vanilla JavaScript
 
-This projects covers how to:
+## This projects covers how to:
 - select elements in the DOM with querySelector
 - iterate through lists with forEach
 - add/remove an element class
