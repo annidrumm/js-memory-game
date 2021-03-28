@@ -1,60 +1,67 @@
-const cards = document.querySelectorAll('.memory-card');
+const cards = document.querySelectorAll('.memory-card')
 
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
+let hasFlippedCard = false
+let lockBoard = false
+let firstCard, secondCard
+let score = 0
+let match = 0
 
 function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
+  if (lockBoard) return
+  if (this === firstCard) return
 
-  this.classList.add('flip');
+  this.classList.add('flip')
 
   if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
+    hasFlippedCard = true
+    firstCard = this
 
-    return;
+    return
   }
 
-  secondCard = this;
-  checkForMatch();
+  secondCard = this
+  checkForMatch()
 }
 
 function checkForMatch() {
-  let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+  let isMatch = firstCard.dataset.framework === secondCard.dataset.framework
 
-  isMatch ? disableCards() : unflipCards();
+  isMatch ? disableCards() : unflipCards()
+  isMatch == true ? match++ : ''
+  document.getElementById('match').innerHTML = match
+
+  score++
+  document.getElementById('score').innerHTML = score
 }
 
 function disableCards() {
-  firstCard.removeEventListener('click', flipCard);
-  secondCard.removeEventListener('click', flipCard);
+  firstCard.removeEventListener('click', flipCard)
+  secondCard.removeEventListener('click', flipCard)
 
-  resetBoard();
+  resetBoard()
 }
 
 function unflipCards() {
-  lockBoard = true;
+  lockBoard = true
 
   setTimeout(() => {
-    firstCard.classList.remove('flip');
-    secondCard.classList.remove('flip');
+    firstCard.classList.remove('flip')
+    secondCard.classList.remove('flip')
 
-    resetBoard();
-  }, 1500);
+    resetBoard()
+  }, 1500)
 }
 
 function resetBoard() {
-  [hasFlippedCard, lockBoard] = [false, false];
-  [firstCard, secondCard] = [null, null];
+  ;[hasFlippedCard, lockBoard] = [false, false]
+  ;[firstCard, secondCard] = [null, null]
 }
 
-(function shuffle() {
+;(function shuffle() {
   cards.forEach((card) => {
-    let randomPos = Math.floor(Math.random() * 12);
-    card.style.order = randomPos;
-  });
-})();
+    let randomPos = Math.floor(Math.random() * 12)
+    card.style.order = randomPos
+  })
+})()
 
-cards.forEach((card) => card.addEventListener('click', flipCard));
+cards.forEach((card) => card.addEventListener('click', flipCard))
