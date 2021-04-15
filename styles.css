@@ -10,6 +10,18 @@ body {
   background: #060ab2;
 }
 
+h1,
+h2 {
+  color: white;
+  margin: 20px 5px 20px 20px;
+}
+
+.scoreboard {
+  width: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.527);
+  text-align: center;
+}
+
 .memory-game {
   width: 640px;
   height: 640px;
